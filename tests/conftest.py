@@ -6,6 +6,7 @@ Provides mocks and fixtures for testing the agentic AI application.
 
 import json
 import os
+
 from unittest.mock import MagicMock
 
 import pytest
