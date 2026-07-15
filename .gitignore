@@ -1,0 +1,157 @@
+# Git ignore rules for Agentic AI Project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.workspace
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs
+logs/
+*.log
+*.pot
+*.log.*
+
+# Build and distribution
+build/
+dist/
+*.whl
+*.tar.gz
+
+# AWS
+.aws/
+credentials
+config
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.psql
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.TemporaryItems
+
+# Node (if you have frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# OS specific
+desktop.ini
+.directory
+
+# IDE specific
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+
+# Python type checking
+.pytype/
+.dmypy.json
+dmypy.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Security
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets.json
+
+# Cache
+.cache/
+__pycache__/
+
+# Environment specific
+local_settings.py
+instance/
+
+# CI/CD
+.github/actions/*/node_modules/
+
+# Miscellaneous
+.parcel-cache
+.next
+.nuxt
+dist
+.cache
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.env.prod
