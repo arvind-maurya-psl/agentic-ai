@@ -5,8 +5,6 @@ This file allows the application to run on AWS Lambda.
 """
 
 import json
-import logging
-import os
 from typing import Any, Dict
 
 from agentic_ai.app import AgenticAIApplication

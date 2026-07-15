@@ -5,10 +5,8 @@ Handles kernel initialization, plugin registration, and function setup.
 """
 
 import logging
-from typing import Optional
 
 from semantic_kernel import Kernel
-from semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion
 
 from .config import get_config
 from .services.bedrock_service import BedrockService

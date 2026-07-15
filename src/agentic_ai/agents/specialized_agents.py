@@ -5,7 +5,6 @@ Includes agents for analytics, customer service, and content generation.
 """
 
 import logging
-from typing import Optional
 
 from .base_agent import AgentTask, BaseAgent
 

@@ -4,7 +4,6 @@ Base AI Agent class for multi-agent orchestration.
 Defines the core interface and common functionality for all agents.
 """
 
-import json
 import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field

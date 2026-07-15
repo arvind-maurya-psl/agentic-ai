@@ -1,4 +1,4 @@
-"""
+﻿"""
 AWS Bedrock service for LLM interactions.
 
 Handles initialization, model invocation, streaming, and error handling for AWS Bedrock.
@@ -110,11 +110,11 @@ class BedrockService:
 
             # Parse response
             response_body = json.loads(response["body"].read().decode("utf-8"))
-            
+
             # Extract text from response (Claude format)
             if "content" in response_body and len(response_body["content"]) > 0:
                 return response_body["content"][0]["text"]
-            
+
             logger.warning("Unexpected Bedrock response format")
             return ""
 

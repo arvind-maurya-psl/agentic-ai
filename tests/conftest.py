@@ -1,13 +1,21 @@
-"""
+﻿"""
 Conftest for pytest configuration and shared fixtures.
 
 Provides mocks and fixtures for testing the agentic AI application.
 """
 
 import json
-from unittest.mock import MagicMock, Mock
+import os
+from unittest.mock import MagicMock
 
 import pytest
+
+
+# Set deterministic test defaults for runtime configuration.
+os.environ.setdefault("ENVIRONMENT", "testing")
+os.environ.setdefault("DEBUG", "true")
+os.environ.setdefault("AWS_REGION", "us-east-1")
+os.environ.setdefault("BEDROCK_MODEL_ID", "anthropic.claude-3-5-sonnet-20241022-v2:0")
 
 
 @pytest.fixture
@@ -45,7 +53,7 @@ def mock_bedrock_response():
 @pytest.fixture
 def mock_bedrock_streaming_response():
     """Create a mock Bedrock streaming response."""
-    
+
     def mock_stream_events():
         chunks = [
             {"chunk": {"bytes": json.dumps({

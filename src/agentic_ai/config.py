@@ -6,8 +6,8 @@ Handles environment variables, credential loading, and configuration validation.
 
 import os
 from dataclasses import dataclass
-from typing import Optional
 from pathlib import Path
+from typing import Optional
 
 from dotenv import load_dotenv
 

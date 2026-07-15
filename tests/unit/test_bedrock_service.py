@@ -1,14 +1,10 @@
-"""Unit tests for BedrockService."""
+﻿"""Unit tests for BedrockService."""
 
 import json
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from agentic_ai.services.bedrock_service import (
-    BedrockModelError,
     BedrockService,
-    BedrockServiceError,
 )
 
 
@@ -66,13 +62,13 @@ class TestBedrockService:
 
         with patch("boto3.client", return_value=mock_bedrock_client):
             service = BedrockService()
-            
+
             # Test temperature > 2 clamped to 2
             service.invoke_model(
                 messages=[{"role": "user", "content": "Hello"}],
                 temperature=3.5,
             )
-            
+
             call_args = mock_bedrock_client.invoke_model.call_args
             body = json.loads(call_args[1]["body"])
             assert body["temperature"] == 2
@@ -86,7 +82,7 @@ class TestBedrockService:
                 messages=[{"role": "user", "content": "Hello"}],
                 temperature=-0.5,
             )
-            
+
             call_args = mock_bedrock_client.invoke_model.call_args
             body = json.loads(call_args[1]["body"])
             assert body["temperature"] == 0
@@ -101,7 +97,7 @@ class TestBedrockService:
 
         with patch("boto3.client", return_value=mock_bedrock_client):
             service = BedrockService()
-            
+
             response_chunks = list(
                 service.invoke_model_streaming(
                     messages=[{"role": "user", "content": "Hello"}],

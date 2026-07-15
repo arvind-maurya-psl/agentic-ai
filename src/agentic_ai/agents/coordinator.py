@@ -7,7 +7,7 @@ Handles agent selection, task delegation, and result aggregation.
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Optional
+from typing import Optional
 
 from .base_agent import AgentTask, BaseAgent
 

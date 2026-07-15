@@ -4,11 +4,9 @@ Memory management for agents and conversations.
 Handles conversation history, context retention, and memory operations.
 """
 
-import json
 import logging
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Optional
 
 logger = logging.getLogger(__name__)
 

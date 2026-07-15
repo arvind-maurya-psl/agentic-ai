@@ -1,4 +1,4 @@
-"""Unit tests for plugins."""
+﻿"""Unit tests for plugins."""
 
 import pytest
 
@@ -74,7 +74,7 @@ class TestDataAnalysisPlugin:
         """Test statistical summary calculation."""
         data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         result = DataAnalysisPlugin.statistical_summary(data)
-        
+
         assert result["min"] == 1
         assert result["max"] == 10
         assert result["mean"] == 5.5

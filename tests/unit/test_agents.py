@@ -1,11 +1,8 @@
-"""Unit tests for BaseAgent and specialized agents."""
+﻿"""Unit tests for BaseAgent and specialized agents."""
 
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from agentic_ai.agents import (
-    AgentMessage,
     AgentTask,
     AnalyticsAgent,
     ContentGenerationAgent,
@@ -20,7 +17,7 @@ class TestBaseAgent:
         """Test agent initialization."""
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = AnalyticsAgent(MagicMock())
-            
+
             assert agent.name == "Analytics Agent"
             assert agent.max_iterations == 10
             assert agent.temperature == 0.5
@@ -30,7 +27,7 @@ class TestBaseAgent:
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = AnalyticsAgent(MagicMock())
             agent.add_message("user", "Hello, agent!")
-            
+
             assert len(agent.message_history) == 1
             assert agent.message_history[0].role == "user"
             assert agent.message_history[0].content == "Hello, agent!"
@@ -42,9 +39,9 @@ class TestBaseAgent:
             agent.add_message("user", "What's 2+2?")
             agent.add_message("assistant", "2+2 = 4")
             agent.add_message("user", "Thanks!")
-            
+
             context = agent.get_conversation_context()
-            
+
             assert len(context) == 3
             assert context[0]["role"] == "user"
             assert context[2]["content"] == "Thanks!"
@@ -55,9 +52,9 @@ class TestBaseAgent:
             agent = AnalyticsAgent(MagicMock())
             for i in range(5):
                 agent.add_message("user", f"Message {i}")
-            
+
             context = agent.get_conversation_context(max_messages=2)
-            
+
             assert len(context) == 2
             assert "Message 3" in context[0]["content"]
 
@@ -66,7 +63,7 @@ class TestBaseAgent:
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = AnalyticsAgent(MagicMock())
             prompt = agent.get_system_prompt()
-            
+
             assert "Analytics Agent" in prompt
             assert "Business Intelligence" in prompt
 
@@ -76,7 +73,7 @@ class TestBaseAgent:
             agent = AnalyticsAgent(MagicMock())
             agent.add_message("user", "Test message")
             assert len(agent.message_history) == 1
-            
+
             agent.clear_history()
             assert len(agent.message_history) == 0
 
@@ -85,9 +82,9 @@ class TestBaseAgent:
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = AnalyticsAgent(MagicMock())
             agent.add_message("user", "Test")
-            
+
             info = agent.get_agent_info()
-            
+
             assert info["name"] == "Analytics Agent"
             assert info["messages_count"] == 1
 
@@ -100,7 +97,7 @@ class TestAnalyticsAgent:
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = AnalyticsAgent(MagicMock())
             plan = agent.plan("Analyze sales data", {})
-            
+
             assert isinstance(plan, list)
             assert len(plan) > 0
             assert "analyze" in plan[0].lower()
@@ -109,17 +106,17 @@ class TestAnalyticsAgent:
         """Test analytics agent task execution."""
         mock_bedrock = MagicMock()
         mock_bedrock.invoke_model.return_value = "Analysis complete: Sales increased 15%"
-        
+
         agent = AnalyticsAgent(mock_bedrock)
-        
+
         task = AgentTask(
             task_id="test-001",
             description="Analyze Q3 sales",
             objective="Find trends",
         )
-        
+
         result = agent.execute_task(task)
-        
+
         assert result["status"] == "completed"
         assert result["task_id"] == "test-001"
 
@@ -132,7 +129,7 @@ class TestCustomerServiceAgent:
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = CustomerServiceAgent(MagicMock())
             plan = agent.plan("Handle complaint", {})
-            
+
             assert isinstance(plan, list)
             assert "customer" in str(plan).lower() or "inquiry" in str(plan).lower()
 
@@ -140,17 +137,17 @@ class TestCustomerServiceAgent:
         """Test customer service agent task execution."""
         mock_bedrock = MagicMock()
         mock_bedrock.invoke_model.return_value = "We will resolve your issue shortly."
-        
+
         agent = CustomerServiceAgent(mock_bedrock)
-        
+
         task = AgentTask(
             task_id="support-001",
             description="Customer login issue",
             objective="Resolve authentication problem",
         )
-        
+
         result = agent.execute_task(task)
-        
+
         assert result["status"] == "completed"
         assert result["task_id"] == "support-001"
 
@@ -163,7 +160,7 @@ class TestContentGenerationAgent:
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = ContentGenerationAgent(MagicMock())
             plan = agent.plan("Write blog post", {})
-            
+
             assert isinstance(plan, list)
             assert "generate" in str(plan).lower() or "write" in str(plan).lower()
 
@@ -171,6 +168,6 @@ class TestContentGenerationAgent:
         """Test that content generation agent has higher temperature."""
         with patch("boto3.client", return_value=mock_bedrock_client):
             agent = ContentGenerationAgent(MagicMock())
-            
+
             # Content generation should have higher temperature than analytics
             assert agent.temperature > 0.7

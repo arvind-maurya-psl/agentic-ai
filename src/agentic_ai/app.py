@@ -16,7 +16,6 @@ from .agents import (
 )
 from .config import get_config
 from .kernel_factory import KernelFactory
-from .services import BedrockService
 from .utils import setup_logging
 
 logger = logging.getLogger(__name__)

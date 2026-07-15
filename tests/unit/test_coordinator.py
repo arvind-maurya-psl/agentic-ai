@@ -1,4 +1,4 @@
-"""Unit tests for agent coordinator."""
+﻿"""Unit tests for agent coordinator."""
 
 from unittest.mock import MagicMock
 
@@ -20,7 +20,7 @@ class TestAgentCoordinator:
         """Create coordinator with mock agents."""
         mock_bedrock = MagicMock()
         mock_bedrock.invoke_model.return_value = "Mock response"
-        
+
         agents = {
             "analytics": AnalyticsAgent(mock_bedrock),
             "support": CustomerServiceAgent(mock_bedrock),
