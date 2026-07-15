@@ -28,7 +28,7 @@ class AnalyticsAgent(BaseAgent):
     def plan(self, objective: str, context: dict) -> list[str]:
         """Create a plan for analytics task."""
         plan_steps = [
-            "Understand the business question",
+            "Analyze the business question",
             "Identify relevant data sources",
             "Analyze data patterns and trends",
             "Generate insights and recommendations",

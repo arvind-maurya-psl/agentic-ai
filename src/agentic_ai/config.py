@@ -5,7 +5,7 @@ Handles environment variables, credential loading, and configuration validation.
 """
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
@@ -22,11 +22,16 @@ if env_file.exists():
 class AWSConfig:
     """AWS Bedrock and authentication configuration."""
 
-    region: str = os.getenv("AWS_REGION", "us-east-1")
-    bedrock_model_id: str = os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-3-5-sonnet-20241022-v2:0")
-    bedrock_endpoint: Optional[str] = os.getenv("BEDROCK_ENDPOINT")
-    max_retries: int = int(os.getenv("AWS_MAX_RETRIES", "3"))
-    timeout_seconds: int = int(os.getenv("AWS_TIMEOUT_SECONDS", "300"))
+    region: str = field(default_factory=lambda: os.getenv("AWS_REGION", "us-east-1"))
+    bedrock_model_id: str = field(
+        default_factory=lambda: os.getenv(
+            "BEDROCK_MODEL_ID",
+            "anthropic.claude-3-5-sonnet-20241022-v2:0",
+        )
+    )
+    bedrock_endpoint: Optional[str] = field(default_factory=lambda: os.getenv("BEDROCK_ENDPOINT"))
+    max_retries: int = field(default_factory=lambda: int(os.getenv("AWS_MAX_RETRIES", "3")))
+    timeout_seconds: int = field(default_factory=lambda: int(os.getenv("AWS_TIMEOUT_SECONDS", "300")))
 
     def validate(self) -> None:
         """Validate AWS configuration."""
