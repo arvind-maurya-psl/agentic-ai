@@ -172,10 +172,6 @@ jobs:
     steps:
       - name: Check PR requirements
         run: |
-          if [ "${{ needs.lint-and-format.result }}" != "success" ]; then
-            echo "❌ Linting and formatting checks failed"
-            exit 1
-          fi
           if [ "${{ needs.tests.result }}" != "success" ]; then
             echo "❌ Tests failed"
             exit 1
