@@ -8,8 +8,6 @@ jobs:
   deploy:
     name: Deploy Application
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.event.inputs.environment || 'dev' }}
     
     permissions:
       id-token: write
