@@ -1,8 +1,8 @@
-name: Deploy to AWS
+name: Deploy test to AWS
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   workflow_dispatch:
     inputs:
       environment:
