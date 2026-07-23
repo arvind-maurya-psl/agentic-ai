@@ -24,6 +24,10 @@ jobs:
             echo "Branch=${{ github.ref_name }}"
             echo "Event=${{ github.event_name }}"
             echo "Actor=${{ github.actor }}"
+
+      - name: Debug Role ARN
+        run: |
+          echo "AWS_ROLE_ARN=${{ secrets.AWS_ROLE_ARN }}"
       
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
