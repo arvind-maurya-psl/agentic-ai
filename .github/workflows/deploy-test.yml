@@ -25,6 +25,19 @@ jobs:
             echo "Event=${{ github.event_name }}"
             echo "Actor=${{ github.actor }}"
 
+      - name: Debug OIDC Claims
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const core = require('@actions/core');
+            const token = await core.getIDToken();
+
+            const payload = JSON.parse(
+              Buffer.from(token.split('.')[1], 'base64').toString()
+            );
+
+            console.log(JSON.stringify(payload, null, 2));
+            
       - name: Debug Role ARN
         run: |
           echo "AWS_ROLE_ARN=${{ secrets.AWS_ROLE_ARN }}"
