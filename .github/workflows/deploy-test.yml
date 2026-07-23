@@ -3,17 +3,6 @@ name: Deploy test to AWS
 on:
   push:
     branches: [ main, develop ]
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: true
-        default: 'staging'
-        type: choice
-        options:
-          - dev
-          - staging
-          - production
 
 jobs:
   deploy:
