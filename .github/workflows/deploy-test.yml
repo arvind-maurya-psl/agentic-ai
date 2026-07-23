@@ -22,4 +22,4 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: GitHubActionsDeployment
+          role-session-name: github-action-new
