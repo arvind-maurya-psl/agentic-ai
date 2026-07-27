@@ -2,7 +2,7 @@ name: Deploy test to AWS
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, github-workflow ]
 
 jobs:
   deploy:
@@ -35,4 +35,3 @@ jobs:
           role-to-assume: arn:aws:iam::325574368753:role/github-test
           aws-region: us-east-1
           role-session-name: github-action-new
-          
